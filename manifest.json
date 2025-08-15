@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Google Permissions Cleaner",
+  "version": "1.0",
+  "description": "Automatically clean up Google app permissions",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://myaccount.google.com/*",
+    "https://accounts.google.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Clean Google Permissions"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [{
+    "matches": [
+      "https://myaccount.google.com/*",
+      "https://accounts.google.com/*"
+    ],
+    "js": ["content.js"],
+    "run_at": "document_end"
+  }]
+}
